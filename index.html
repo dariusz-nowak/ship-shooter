@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Ship Invaders</title>
+ <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+<body>
+ <div class="game">
+  <div class="stats">
+   <div class="boss-health">
+    <p>1000</p>
+   </div>
+   <div class="players-ammunition">
+    <div class="player one">
+     <div class="standard active">
+      <p>FULL</p>
+      <p></p>
+     </div>
+     <div class="spread">
+      <p>100</p>
+      <p></p>
+     </div>
+     <div class="laser">
+      <p>100</p>
+      <p></p>
+     </div>
+     <div class="shotgun">
+      <p>100</p>
+      <p></p>
+     </div>
+    </div>
+    <div class="player two">
+     <div class="standard active">
+      <p>FULL</p>
+      <p></p>
+     </div>
+     <div class="spread">
+      <p>100</p>
+      <p></p>
+     </div>
+     <div class="laser">
+      <p>100</p>
+      <p></p>
+     </div>
+     <div class="shotgun">
+      <p>100</p>
+      <p></p>
+     </div>
+    </div>
+   </div>
+   <div class="player-stats">
+    <div class="player one">
+     <div class="lives">
+      <p>25</p>
+     </div>
+     <div class="bombs">
+      <p>25</p>
+     </div>
+     <div class="points">
+      <p>100000</p>
+      <p></p>
+     </div>
+    </div>
+    <div class="player two">
+     <div class="points">
+      <p>100000</p>
+      <p></p>
+     </div>
+     <div class="bombs">
+      <p>25</p>
+     </div>
+     <div class="lives">
+      <p>25</p>
+     </div>
+    </div>
+   </div>
+   <div class="stage">
+    <p>Stage</p>
+    <p>1 x 1</p>
+   </div>
+  </div>
+  <div class="board">
+   <div class="container">
+    <div class="players">
+     <div class="player gray"></div>
+     <div class="player red"></div>
+     <div class="bullets"></div>
+    </div>
+    <div class="enemies">
+     <div class="bullets"></div>
+     <div class="loots"></div>
+    </div>
+   </div>
+  </div>
+  <div class="menu">
+   <div class="container">
+    <h1 class="header">Ship Invaders</h1>
+    <ul class="main active">
+     <li class="start">Start</li>
+     <li class="options">Options</li>
+     <li class="help">Help</li>
+     <li class="exit">Exit</li>
+    </ul>
+    <ul class="options">
+     <h1>PLAYERS</h1>
+     <div class="players">
+      <p class="one active">Single-player</p>
+      <p class="two">Multi-player</p>
+     </div>
+     <h1>DIFFICULTIES</h1>
+     <div class="difficulty">
+      <p class="easy active">Easy</p>
+      <p class="medium">Medium</p>
+      <p class="hard">Hard</p>
+      <div class="chosen-difficulties">
+       <div class="easy">
+        <div class="initial-stage">
+         <p>Initial stage</p>
+         <p>1 x 1</p>
+        </div>
+        <div class="spread-ammo">
+         <p>Spread ammunition</p>
+         <p>100</p>
+        </div>
+        <div class="laser-ammo">
+         <p>Laser ammunition</p>
+         <p>100</p>
+        </div>
+        <div class="shotgun-ammo">
+         <p>Shotgun ammunition</p>
+         <p>100</p>
+        </div>
+        <div class="bombs">
+         <p>Bombs</p>
+         <p>25</p>
+        </div>
+        <div class="lives">
+         <p>Lives</p>
+         <p>25</p>
+        </div>
+        <div class="prices">
+         <p>Prices in the store</p>
+         <p>Cheap</p>
+        </div>
+       </div>
+       <div class="medium">
+        <div class="initial-stage">
+         <p>Initial stage</p>
+         <p>2 x 1</p>
+        </div>
+        <div class="spread-ammo">
+         <p>Spread ammunition</p>
+         <p>50</p>
+        </div>
+        <div class="laser-ammo">
+         <p>Laser ammunition</p>
+         <p>50</p>
+        </div>
+        <div class="shotgun-ammo">
+         <p>Shotgun ammunition</p>
+         <p>50</p>
+        </div>
+        <div class="bombs">
+         <p>Bombs</p>
+         <p>15</p>
+        </div>
+        <div class="lives">
+         <p>Lives</p>
+         <p>15</p>
+        </div>
+        <div class="prices">
+         <p>Prices in the store</p>
+         <p>Moderate</p>
+        </div>
+       </div>
+       <div class="hard">
+        <div class="initial-stage">
+         <p>Initial stage</p>
+         <p>3 x 1</p>
+        </div>
+        <div class="spread-ammo">
+         <p>Spread ammunition</p>
+         <p>10</p>
+        </div>
+        <div class="laser-ammo">
+         <p>Laser ammunition</p>
+         <p>10</p>
+        </div>
+        <div class="shotgun-ammo">
+         <p>Shotgun ammunition</p>
+         <p>10</p>
+        </div>
+        <div class="bombs">
+         <p>Bombs</p>
+         <p>10</p>
+        </div>
+        <div class="lives">
+         <p>Lives</p>
+         <p>5</p>
+        </div>
+        <div class="prices">
+         <p>Prices in the store</p>
+         <p>Expensive</p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <button class="save">Save</button>
+    </ul>
+    <ul class="help">
+     <div class="player one">
+      <h1>Player one</h1>
+      <div class="information">
+       <p>Moving</p>
+       <p>Mouse</p>
+      </div>
+      <div class="information">
+       <p>Shooting</p>
+       <p>Left mouse button</p>
+      </div>
+      <div class="information">
+       <p>Changing weapon</p>
+       <p>Mouse scroll</p>
+      </div>
+      <div class="information">
+       <p>Use bomb</p>
+       <p>Mouse scroll button</p>
+      </div>
+     </div>
+     <div class="player two">
+      <h1>Player two</h1>
+      <div class="information">
+       <p>Moving</p>
+       <p>W S A D</p>
+      </div>
+      <div class="information">
+       <p>Shooting</p>
+       <p>Space</p>
+      </div>
+      <div class="information">
+       <p>Changing weapon</p>
+       <p>1-4</p>
+      </div>
+      <div class="information">
+       <p>Use bomb</p>
+       <p>Enter</p>
+      </div>
+     </div>
+     <button class="back">Back</button>
+    </ul>
+   </div>
+  </div>
+
+  <script src="js/objects/players/one/ship.js"></script>
+  <script src="js/objects/players/two/ship.js"></script>
+
+  <script src="js/objects/players/bullets/standard.js"></script>
+  <script src="js/objects/players/bullets/spread.js"></script>
+  <script src="js/objects/players/bullets/laser.js"></script>
+  <script src="js/objects/players/bullets/shotgun.js"></script>
+
+  <script src="js/objects/enemies/empty.js"></script>
+  <script src="js/objects/enemies/standard.js"></script>
+
+  <script src="js/objects/enemies/bullets/standard.js"></script>
+
+  <script src="js/objects/shop/shop.js"></script>
+
+  <script src="js/objects/bosses/asteroid/ship.js"></script>
+  <script src="js/objects/bosses/asteroid/bullet.js"></script>
+
+  <script src="js/objects/loots/ammunition.js"></script>
+  <script src="js/objects/loots/bomb.js"></script>
+  <script src="js/objects/loots/shield.js"></script>
+  <script src="js/objects/loots/life.js"></script>
+  <script src="js/objects/loots/multiMoney.js"></script>
+  <script src="js/objects/loots/stageClear.js"></script>
+
+  <script src="js/ui/stages.js"></script>
+  <script src="js/ui/stats.js"></script>
+  <script src="js/ui/menu.js"></script>
+  <script src="js/ui/game.js"></script>
+  <script src="js/ui/main.js"></script>
+
+ </div>
+</body>
+
+</html>
