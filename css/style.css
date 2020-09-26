@@ -1,0 +1,892 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #fefefe;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  list-style-type: none;
+  letter-spacing: 3px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.game {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../img/game/background.jpg");
+  -webkit-transition: 20s linear;
+  transition: 20s linear;
+}
+
+.game > * {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.game > *.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.game .stats {
+  overflow: hidden;
+}
+
+.game .stats .boss-health {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  width: 50%;
+  padding: 0 1px;
+  background-image: url(../img/enemies/health.png);
+  background-size: 100% 100%;
+  -webkit-transition: 6s;
+  transition: 6s;
+  z-index: 2;
+}
+
+.game .stats .boss-health p {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+  height: 20px;
+  margin-top: 1px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#c80000), to(rgba(255, 0, 0, 0)));
+  background: linear-gradient(180deg, #c80000 0%, rgba(255, 0, 0, 0) 100%);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.game .stats .players-ammunition .player {
+  -webkit-filter: opacity(90%);
+          filter: opacity(90%);
+  position: absolute;
+  left: -200px;
+  bottom: 50px;
+  width: 160px;
+  -webkit-transition: 1.5s;
+  transition: 1.5s;
+}
+
+.game .stats .players-ammunition .player > div {
+  position: relative;
+  left: -50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
+  margin: 5px 0;
+  padding: 0 5px;
+  line-height: 50px;
+  background-image: url("../img/player/ammo/background.png");
+  background-size: 100% 100%;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+}
+
+.game .stats .players-ammunition .player > div p:last-of-type {
+  height: 45px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+
+.game .stats .players-ammunition .player > div.active {
+  left: -11px;
+}
+
+.game .stats .players-ammunition .player > div.empty {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+  left: -70%;
+}
+
+.game .stats .players-ammunition .player > div > * {
+  width: 50%;
+  padding: 0 10px;
+}
+
+.game .stats .players-ammunition .player > div.standard p:last-of-type {
+  background-image: url("../img/player/ammo/standard.png");
+}
+
+.game .stats .players-ammunition .player > div.spread p:last-of-type {
+  background-image: url("../img/player/ammo/spread.png");
+}
+
+.game .stats .players-ammunition .player > div.laser p:last-of-type {
+  background-image: url("../img/player/ammo/laser.png");
+  background-size: 300% 300%;
+}
+
+.game .stats .players-ammunition .player > div.shotgun p:last-of-type {
+  background-image: url("../img/player/ammo/shotgun.png");
+}
+
+.game .stats .players-ammunition .player > div.inShop {
+  left: -11px;
+}
+
+.game .stats .players-ammunition .player.two {
+  left: unset;
+  right: -200px;
+}
+
+.game .stats .players-ammunition .player.two > div {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  left: unset;
+  right: -50%;
+}
+
+.game .stats .players-ammunition .player.two > div.active {
+  right: -11px;
+}
+
+.game .stats .players-ammunition .player.two > div.empty {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+  right: -70%;
+}
+
+.game .stats .players-ammunition .player.two > div.inShop {
+  right: -11px;
+}
+
+.game .stats .player-stats .player {
+  position: absolute;
+  left: 0;
+  bottom: -100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: auto;
+  padding: 10px 15px;
+  background-color: rgba(100, 0, 255, 0.3);
+  -webkit-filter: opacity(75%);
+          filter: opacity(75%);
+  border-top-right-radius: 40px;
+  -webkit-transition: 1.5s;
+  transition: 1.5s;
+}
+
+.game .stats .player-stats .player div {
+  position: relative;
+  width: 80px;
+  line-height: 25px;
+  padding: 0 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game .stats .player-stats .player div p {
+  display: inline-block;
+  text-align: center;
+}
+
+.game .stats .player-stats .player div p:first-of-type {
+  padding-left: 10px;
+}
+
+.game .stats .player-stats .player div.lives {
+  background-image: url("../img/player/ship.png");
+  -webkit-filter: hue-rotate(90deg);
+          filter: hue-rotate(90deg);
+}
+
+.game .stats .player-stats .player div.bombs {
+  background-image: url("../img/player/stats/bomb.png");
+}
+
+.game .stats .player-stats .player div.points {
+  width: auto;
+  background-image: url("../img/player/stats/money.png");
+}
+
+.game .stats .player-stats .player div.points p:first-of-type {
+  padding-left: 15px;
+}
+
+.game .stats .player-stats .player div.points p:last-of-type {
+  color: gold;
+}
+
+.game .stats .player-stats .player div.points p:last-of-type span {
+  display: inline-block;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.game .stats .player-stats .player.two {
+  left: unset;
+  right: 0;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  border-top-right-radius: 0;
+  border-top-left-radius: 40px;
+}
+
+.game .stats .player-stats .player.two div {
+  background-position: top right;
+}
+
+.game .stats .player-stats .player.two div.lives {
+  background-image: url("../img/player/ship.png");
+  -webkit-filter: contrast(250%);
+          filter: contrast(250%);
+}
+
+.game .stats .player-stats .player.two div.points p:first-of-type {
+  padding-left: 0;
+  padding-right: 15px;
+}
+
+.game .stats .stage {
+  position: absolute;
+  left: 50%;
+  bottom: -125px;
+  width: 400px;
+  height: 80px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-image: url(../img/game/stage.png);
+  background-size: 100% 100%;
+  line-height: 60px;
+  text-align: center;
+  font-size: 36px;
+  letter-spacing: 16px;
+  -webkit-filter: opacity(85%);
+          filter: opacity(85%);
+  -webkit-transition: 1.5s;
+  transition: 1.5s;
+}
+
+.game .stats .stage p {
+  display: inline-block;
+}
+
+.game .board {
+  overflow: hidden;
+  cursor: none;
+}
+
+.game .board .container .players .player > * {
+  position: absolute;
+  width: 50px;
+  height: 60px;
+  background-image: url(../img/player/ship.png);
+  background-size: contain;
+  z-index: 2;
+}
+
+.game .board .container .players .player > *.shield::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  background-image: url("../img/player/shield.png");
+  background-size: cover;
+}
+
+.game .board .container .players .player > *.money-multipler::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  background-size: cover;
+}
+
+.game .board .container .players .player > *.gray {
+  -webkit-filter: hue-rotate(90deg);
+          filter: hue-rotate(90deg);
+}
+
+.game .board .container .players .player > *.red {
+  -webkit-filter: contrast(250%);
+          filter: contrast(250%);
+}
+
+.game .board .container .players .bullets > * {
+  position: absolute;
+  width: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-transition: .025s linear;
+  transition: .025s linear;
+}
+
+.game .board .container .players .bullets .standard {
+  height: 50px;
+  background-image: url(../img/player/bullets/normal.png);
+  background-size: cover;
+}
+
+.game .board .container .players .bullets .spread {
+  height: 30px;
+  background-image: url(../img/player/bullets/spread.png);
+}
+
+.game .board .container .players .bullets .laser {
+  width: 50px;
+  height: 100%;
+  background-image: url(../img/player/bullets/laser.png);
+  background-size: 1600% 300%;
+  -webkit-transition: 0s;
+  transition: 0s;
+}
+
+.game .board .container .enemies {
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  width: 90%;
+  padding: 60px 0;
+  margin: 0 auto;
+}
+
+.game .board .container .enemies .shop {
+  width: 250px;
+  height: 250px;
+  background-image: url("../img/enemies/shop.png");
+}
+
+.game .board .container .enemies .shop .offer {
+  position: relative;
+  top: 250px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 0px;
+  height: 0px;
+  border: 1px solid white;
+  -webkit-transition: .8s linear;
+  transition: .8s linear;
+  overflow: hidden;
+}
+
+.game .board .container .enemies .shop .offer div {
+  position: relative;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  background-image: url("../img/game/stage.png");
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+  background-position: center center;
+  text-align: center;
+  line-height: 100px;
+}
+
+.game .board .container .enemies .shop .offer div:hover {
+  cursor: pointer;
+}
+
+.game .board .container .enemies .shop .offer div p {
+  max-height: 100px;
+}
+
+.game .board .container .enemies .shop .offer div p span {
+  padding-right: 25px;
+  background-image: url("../img/player/stats/money.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: right;
+}
+
+.game .board .container .enemies .shop .offer div::before, .game .board .container .enemies .shop .offer div::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-position: center;
+}
+
+.game .board .container .enemies .shop .offer div::after {
+  left: unset;
+  right: 50px;
+}
+
+.game .board .container .enemies .shop .offer div:nth-of-type(1)::before, .game .board .container .enemies .shop .offer div:nth-of-type(1)::after {
+  background-image: url("../img/player/ammo/spread.png");
+}
+
+.game .board .container .enemies .shop .offer div:nth-of-type(2)::before, .game .board .container .enemies .shop .offer div:nth-of-type(2)::after {
+  background-image: url("../img/player/ammo/laser.png");
+  background-size: 200% 90%;
+  background-position: center center;
+}
+
+.game .board .container .enemies .shop .offer div:nth-of-type(3)::before, .game .board .container .enemies .shop .offer div:nth-of-type(3)::after {
+  background-image: url("../img/player/ammo/shotgun.png");
+}
+
+.game .board .container .enemies .shop .offer div:nth-of-type(4)::before, .game .board .container .enemies .shop .offer div:nth-of-type(4)::after {
+  background-image: url("../img/player/stats/heart.png");
+  background-size: 50% 50%;
+  background-position: center center;
+}
+
+.game .board .container .enemies .shop .offer div:nth-of-type(5)::before, .game .board .container .enemies .shop .offer div:nth-of-type(5)::after {
+  background-image: url("../img/player/stats/bomb.png");
+  background-size: 40% 40%;
+  background-position: center center;
+}
+
+.game .board .container .enemies .boss {
+  -webkit-transition: .39s linear;
+  transition: .39s linear;
+}
+
+.game .board .container .enemies .boss.asteroid {
+  width: 1200px;
+  height: 400px;
+  background-image: url("../img/enemies/bosses/asteroid.png");
+  background-position-y: bottom;
+}
+
+.game .board .container .enemies .empty {
+  width: 0;
+}
+
+.game .board .container .enemies .normal {
+  width: 60px;
+  height: 60px;
+  background-image: url("../img/enemies/normal.png");
+}
+
+.game .board .container .enemies .destroyed {
+  background-image: none !important;
+}
+
+.game .board .container .enemies > * {
+  background-size: cover;
+  -webkit-transition: .19s linear;
+  transition: .19s linear;
+  margin-bottom: 25px;
+}
+
+.game .board .container .enemies > * .explosion {
+  width: 60px;
+  height: 60px;
+  background-image: url("../img/enemies/explosion.png");
+  background-size: 1200% 100%;
+}
+
+.game .board .container .enemies > * .life {
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+  height: 4px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#c80000), to(rgba(255, 0, 0, 0)));
+  background: linear-gradient(180deg, #c80000 0%, rgba(255, 0, 0, 0) 100%);
+  border-radius: 2px;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+}
+
+.game .board .container .enemies .bullets {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.game .board .container .enemies .bullets > * {
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: .09s linear;
+  transition: .09s linear;
+}
+
+.game .board .container .enemies .bullets .standard {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-image: url("../img/enemies/bullets/standard.png");
+}
+
+.game .board .container .enemies .loots {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.game .board .container .enemies .loots > * {
+  position: absolute;
+  width: 75px;
+  height: 25px;
+  border: 1px solid white;
+  border-color: rgba(255, 255, 255, 0.3);
+  background-image: url("../img/enemies/loot/background.png");
+  background-position: center;
+  background-size: 110%;
+  border-radius: 35%;
+  -webkit-transition: .09s linear;
+  transition: .09s linear;
+}
+
+.game .board .container .enemies .loots > *::after {
+  content: "10";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 80%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: contain;
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.game .board .container .enemies .loots .ammunition {
+  -webkit-filter: hue-rotate(180deg) drop-shadow(0 0 10px green) invert(5%);
+          filter: hue-rotate(180deg) drop-shadow(0 0 10px green) invert(5%);
+}
+
+.game .board .container .enemies .loots .ammunition.spread::after {
+  background-image: url("../img/enemies/loot/spread.png");
+}
+
+.game .board .container .enemies .loots .ammunition.laser::after {
+  background-image: url("../img/enemies/loot/laser.png");
+  background-size: 400% 300%;
+  background-position-x: 13px;
+}
+
+.game .board .container .enemies .loots .ammunition.shotgun::after {
+  background-image: url("../img/enemies/loot/shotgun.png");
+}
+
+.game .board .container .enemies .loots .bomb {
+  -webkit-filter: grayscale(100%) drop-shadow(0 0 10px green) invert(5%);
+          filter: grayscale(100%) drop-shadow(0 0 10px green) invert(5%);
+}
+
+.game .board .container .enemies .loots .bomb::after {
+  content: "3";
+  background-image: url("../img/enemies/loot/bomb.png");
+}
+
+.game .board .container .enemies .loots .shield {
+  -webkit-filter: contrast(250%) drop-shadow(0 0 10px green) invert(5%);
+          filter: contrast(250%) drop-shadow(0 0 10px green) invert(5%);
+}
+
+.game .board .container .enemies .loots .shield::after {
+  content: "15s";
+  background-image: url("../img/enemies/loot/shield.png");
+}
+
+.game .board .container .enemies .loots .life {
+  -webkit-filter: brightness(1.75) drop-shadow(0 0 10px green) invert(5%);
+          filter: brightness(1.75) drop-shadow(0 0 10px green) invert(5%);
+}
+
+.game .board .container .enemies .loots .life::after {
+  content: "3";
+  background-image: url("../img/enemies/loot/heart.png");
+  opacity: .7;
+}
+
+.game .board .container .enemies .loots .multi-money {
+  -webkit-filter: saturate(300%) drop-shadow(0 0 10px green) invert(5%);
+          filter: saturate(300%) drop-shadow(0 0 10px green) invert(5%);
+}
+
+.game .board .container .enemies .loots .multi-money::after {
+  content: "2x";
+  background-image: url("../img/enemies/loot/money.png");
+}
+
+.game .board .container .enemies .loots .stage-clear {
+  -webkit-filter: hue-rotate(90deg) drop-shadow(0 0 10px green) invert(5%);
+          filter: hue-rotate(90deg) drop-shadow(0 0 10px green) invert(5%);
+}
+
+.game .board .container .enemies .loots .stage-clear::after {
+  content: "next stage";
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.game .menu {
+  -webkit-filter: opacity(90%);
+          filter: opacity(90%);
+}
+
+.game .menu .container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 705px;
+  height: 810px;
+  background-image: url(../img/menu/background.png);
+  background-size: cover;
+}
+
+.game .menu .container h1 {
+  height: 111px;
+  line-height: 111px;
+  text-align: center;
+  font-size: 52px;
+}
+
+.game .menu .container ul {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 540px;
+  height: 550px;
+  margin: 60px 82.5px 0;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.game .menu .container ul.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.game .menu .container ul li {
+  -ms-flex-preferred-size: 90px;
+      flex-basis: 90px;
+  width: 540px;
+  background-image: url(../img/menu/option.png);
+  background-size: contain;
+  position: relative;
+  line-height: 90px;
+  text-align: center;
+  font-size: 38px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  cursor: pointer;
+}
+
+.game .menu .container ul li:hover {
+  -webkit-filter: contrast(140%);
+          filter: contrast(140%);
+  color: gold;
+}
+
+.game .menu .container ul li.shadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 540px;
+  background-image: url(../img/menu/option.png);
+  background-size: cover;
+  -webkit-transition: .25s;
+  transition: .25s;
+}
+
+.game .menu .container ul.help {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.game .menu .container ul.help .player {
+  margin-bottom: 55px;
+}
+
+.game .menu .container ul.help .player h1 {
+  height: 80px;
+  line-height: 80px;
+}
+
+.game .menu .container ul.help .player .information {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.game .menu .container ul.help .player .information p {
+  margin-bottom: 10px;
+}
+
+.game .menu .container ul.help button {
+  position: absolute;
+  top: 500px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+  height: 60px;
+  border: none;
+  background-image: url(../img/menu/option.png);
+  background-size: 100% 100%;
+  background-color: transparent;
+  font-size: 26px;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.game .menu .container ul.help button:hover {
+  -webkit-filter: contrast(140%);
+          filter: contrast(140%);
+  color: gold;
+}
+
+.game .menu .container ul.options {
+  -webkit-box-pack: normal;
+      -ms-flex-pack: normal;
+          justify-content: normal;
+}
+
+.game .menu .container ul.options h1 {
+  height: 60px;
+  line-height: 60px;
+  font-size: 36px;
+}
+
+.game .menu .container ul.options .players, .game .menu .container ul.options .difficulty {
+  margin-bottom: 50px;
+}
+
+.game .menu .container ul.options .players > p, .game .menu .container ul.options .difficulty > p {
+  color: gray;
+}
+
+.game .menu .container ul.options .players > p:hover, .game .menu .container ul.options .difficulty > p:hover {
+  color: white;
+}
+
+.game .menu .container ul.options .players > p.active, .game .menu .container ul.options .difficulty > p.active {
+  color: gold;
+}
+
+.game .menu .container ul.options .players > p, .game .menu .container ul.options .difficulty > p {
+  display: inline-block;
+  width: 50%;
+  padding: 10px 20px;
+  float: left;
+  text-align: center;
+  font-size: 24px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  cursor: pointer;
+}
+
+.game .menu .container ul.options .difficulty > p {
+  width: 33.3333%;
+}
+
+.game .menu .container ul.options .difficulty .chosen-difficulties {
+  position: relative;
+  margin-top: 75px;
+}
+
+.game .menu .container ul.options .difficulty .chosen-difficulties > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.game .menu .container ul.options .difficulty .chosen-difficulties > div.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.game .menu .container ul.options .difficulty .chosen-difficulties > div p {
+  width: 50%;
+  padding-top: 5px;
+  float: left;
+}
+
+.game .menu .container ul.options .difficulty .chosen-difficulties > div p:last-of-type {
+  text-align: right;
+}
+
+.game .menu .container ul.options button {
+  position: absolute;
+  top: 500px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+  height: 60px;
+  border: none;
+  background-image: url(../img/menu/option.png);
+  background-size: 100% 100%;
+  background-color: transparent;
+  font-size: 26px;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.game .menu .container ul.options button:hover {
+  -webkit-filter: contrast(140%);
+          filter: contrast(140%);
+  color: gold;
+}
+
+.key-up {
+  opacity: 0.5;
+}
+/*# sourceMappingURL=style.css.map */

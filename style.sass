@@ -1,0 +1,577 @@
+*
+ margin: 0
+ padding: 0
+ box-sizing: border-box
+ color: #fefefe
+ font-family: 'Orbitron', sans-serif;
+ font-weight: 700
+ list-style-type: none
+ letter-spacing: 3px
+ user-select: none
+.game
+ width: 100vw
+ height: 100vh
+ background-image: url('../img/game/background.jpg')
+ transition: 20s linear
+ &>*
+  position: absolute
+  width: 100%
+  height: 100%
+  transition: .4s
+  &.hide
+   opacity: 0
+   visibility: hidden
+ .stats
+  overflow: hidden
+  .boss-health
+   position: absolute
+   top: -200px
+   left: 50%
+   transform: translate(-50%, 0)
+   width: 50%
+   padding: 0 1px
+   background-image: url(../img/enemies/health.png)
+   background-size: 100% 100%
+   transition: 6s
+   z-index: 2
+   p
+    position: relative
+    left: 50%
+    transform: translateX(-50%)
+    width: 100%
+    height: 20px
+    margin-top: 1px
+    background: linear-gradient(180deg, rgba(200,0,0,1) 0%, rgba(255,0,0,0) 100%)
+    border-radius: 6px 
+    text-align: center
+  .players-ammunition
+   .player
+    filter: opacity(90%)
+    position: absolute
+    left: -200px
+    bottom: 50px
+    width: 160px
+    transition: 1.5s
+    &>div
+     position: relative
+     left: -50%
+     display: flex
+     height: 50px
+     margin: 5px 0
+     padding: 0 5px
+     line-height: 50px
+     background-image: url('../img/player/ammo/background.png')
+     background-size: 100% 100%
+     transition: .2s linear 
+     p:last-of-type
+      height: 45px
+      background-repeat: no-repeat
+      background-size: contain
+      background-position: center center
+     &.active
+      left: -11px
+     &.empty
+      filter: grayscale(100%)
+      left: -70%
+     &>*
+      width: 50%
+      padding: 0 10px
+     &.standard
+      p:last-of-type
+       background-image: url('../img/player/ammo/standard.png')
+     &.spread
+      p:last-of-type
+       background-image: url('../img/player/ammo/spread.png')
+     &.laser
+      p:last-of-type
+       background-image: url('../img/player/ammo/laser.png')
+       background-size: 300% 300%
+     &.shotgun
+      p:last-of-type
+       background-image: url('../img/player/ammo/shotgun.png')
+     &.inShop
+      left: -11px
+    &.two
+     left: unset
+     right: -200px
+     &>div
+      flex-direction: row-reverse
+      justify-content: right
+      left: unset
+      right: -50%
+      &.active
+       right: -11px
+      &.empty
+       filter: grayscale(100%)
+       right: -70%
+      &.inShop
+       right: -11px
+  .player-stats
+   .player
+    position: absolute
+    left: 0
+    bottom: -100px
+    display: flex
+    width: auto
+    padding: 10px 15px
+    background-color: rgba(100,0,255,.3)
+    filter: opacity(75%)
+    border-top-right-radius: 40px
+    transition: 1.5s 
+    div
+     position: relative
+     width: 80px
+     line-height: 25px
+     padding: 0 15px
+     background-size: contain
+     background-repeat: no-repeat
+     p
+      display: inline-block
+      text-align: center
+      &:first-of-type
+       padding-left: 10px
+     &.lives
+      background-image: url('../img/player/ship.png')
+      filter: hue-rotate(90deg)
+     &.bombs
+      background-image: url('../img/player/stats/bomb.png')
+     &.points
+      width: auto
+      background-image: url('../img/player/stats/money.png')
+      p:first-of-type
+       padding-left: 15px
+      p:last-of-type
+       color: gold
+       span
+        display: inline-block
+        transition: .2s
+    &.two
+     left: unset
+     right: 0
+     justify-content: right
+     border-top-right-radius: 0
+     border-top-left-radius: 40px
+     div
+      background-position: top right
+      &.lives
+       background-image: url('../img/player/ship.png')
+       filter: contrast(250%)
+      &.points
+       p:first-of-type
+        padding-left: 0
+        padding-right: 15px
+  .stage
+   position: absolute
+   left: 50%
+   // bottom: -25px
+   bottom: -125px
+   width: 400px
+   height: 80px
+   transform: translateX(-50%)
+   background-image: url(../img/game/stage.png)
+   background-size: 100% 100%
+   line-height: 60px
+   text-align: center
+   font-size: 36px
+   letter-spacing: 16px
+   filter: opacity(85%)
+   transition: 1.5s
+   p
+    display: inline-block
+ .board
+  overflow: hidden
+  cursor: none
+  .container
+   .players
+    .player
+     &>*
+      position: absolute
+      width: 50px
+      height: 60px
+      background-image: url(../img/player/ship.png)
+      background-size: contain
+      z-index: 2
+      &.shield::after
+       content: ""
+       position: absolute
+       top: 50%
+       left: 50%
+       transform: translate(-50%, -50%)
+       width: 90px
+       height: 90px
+       background-image: url('../img/player/shield.png')
+       background-size: cover
+      &.money-multipler::after
+       content: ""
+       position: absolute
+       top: 50%
+       left: 50%
+       transform: translate(-50%, -50%) 
+       width: 90px
+       height: 90px
+       background-size: cover
+      &.gray
+       filter: hue-rotate(90deg)
+      &.red
+       filter: contrast(250%)
+    .bullets
+     &>*
+      position: absolute
+      width: 30px
+      background-size: contain
+      background-repeat: no-repeat
+      transition: .025s linear
+     .standard
+      height: 50px
+      background-image: url(../img/player/bullets/normal.png)
+      background-size: cover
+     .spread
+      height: 30px
+      background-image: url(../img/player/bullets/spread.png)
+     .laser
+      width: 50px
+      height: 100%
+      background-image: url(../img/player/bullets/laser.png)
+      background-size: 1600% 300%
+      transition: 0s
+   .enemies
+    display: grid
+    justify-items: center
+    width: 90%
+    padding: 60px 0
+    margin: 0 auto
+    .shop
+     width: 250px
+     height: 250px
+     background-image: url('../img/enemies/shop.png')
+     .offer
+      position: relative
+      top: 250px
+      left: 50%
+      transform: translateX(-50%)
+      display: flex
+      flex-direction: column
+      width: 0px
+      height: 0px
+      border: 1px solid white
+      transition: .8s linear
+      overflow: hidden
+      div
+       position: relative
+       flex-basis: 100%
+       background-image: url('../img/game/stage.png')
+       background-repeat: no-repeat
+       background-size: 100% 80%
+       background-position: center center
+       text-align: center
+       line-height: 100px
+       &:hover
+        cursor: pointer
+       p
+        max-height: 100px
+        span
+         padding-right: 25px
+         background-image: url("../img/player/stats/money.png")
+         background-size: contain
+         background-repeat: no-repeat
+         background-position-x: right
+       &::before, &::after
+        content: ""
+        position: absolute
+        top: 50%
+        left: 50px
+        transform: translateY(-50%)
+        display: block
+        width: 100px
+        height: 100px
+        background-repeat: no-repeat
+        background-size: 75%
+        background-position: center
+       &::after
+        left: unset
+        right: 50px
+       &:nth-of-type(1)
+        &::before, &::after
+         background-image: url("../img/player/ammo/spread.png")
+       &:nth-of-type(2)
+        &::before, &::after
+         background-image: url("../img/player/ammo/laser.png")
+         background-size: 200% 90%
+         background-position: center center
+       &:nth-of-type(3)
+        &::before, &::after
+         background-image: url("../img/player/ammo/shotgun.png")
+       &:nth-of-type(4)
+        &::before, &::after
+         background-image: url("../img/player/stats/heart.png")
+         background-size: 50% 50%
+         background-position: center center
+       &:nth-of-type(5)
+        &::before, &::after
+         background-image: url("../img/player/stats/bomb.png")
+         background-size: 40% 40%
+         background-position: center center
+       &:nth-of-type(6)
+        &::before, &::after
+    .boss
+     transition: .39s linear
+     &.asteroid
+      width: 1200px
+      height: 400px
+      background-image: url('../img/enemies/bosses/asteroid.png')
+      background-position-y: bottom
+    .empty
+     width: 0
+    .normal
+     width: 60px
+     height: 60px
+     background-image: url('../img/enemies/normal.png')
+    .destroyed
+     background-image: none !important
+    &>*
+     background-size: cover
+     transition: .19s linear
+     margin-bottom: 25px
+     .explosion
+      width: 60px
+      height: 60px
+      background-image: url('../img/enemies/explosion.png')
+      background-size: 1200% 100%
+     .life
+      position: absolute
+      left: 50%
+      bottom: -4px
+      transform: translateX(-50%)
+      width: 100%
+      height: 4px
+      background: linear-gradient(180deg, rgba(200,0,0,1) 0%, rgba(255,0,0,0) 100%)
+      border-radius: 2px
+      transition: .2s linear
+    .bullets
+     position: absolute
+     top: 0
+     left: 0
+     &>*
+      background-size: cover
+      background-repeat: no-repeat
+      transition: .09s linear
+     .standard
+      position: absolute
+      width: 25px
+      height: 25px
+      background-image: url('../img/enemies/bullets/standard.png')
+    .loots
+     position: absolute
+     top: 0
+     left: 0
+     &>*
+      position: absolute
+      width: 75px
+      height: 25px
+      border: 1px solid white
+      border-color: rgba(255,255,255,.3)
+      background-image: url('../img/enemies/loot/background.png')
+      background-position: center
+      background-size: 110%
+      border-radius: 35%
+      transition: .09s linear
+      &::after
+       content: "10"
+       position: absolute
+       top: 0
+       left: 50%
+       transform: translateX(-50%)
+       width: 80%
+       height: 100%
+       background-repeat: no-repeat
+       background-position: top right
+       background-size: contain
+       font-size: 12px
+       line-height: 22px
+     .ammunition
+      filter: hue-rotate(180deg) drop-shadow(0 0 10px green) invert(5%)
+      &.spread
+       &::after
+        background-image: url('../img/enemies/loot/spread.png')
+      &.laser
+       &::after
+        background-image: url('../img/enemies/loot/laser.png')
+        background-size: 400% 300%
+        background-position-x: 13px
+      &.shotgun
+       &::after
+        background-image: url('../img/enemies/loot/shotgun.png')
+     .bomb
+      filter: grayscale(100%) drop-shadow(0 0 10px green) invert(5%)
+      &::after
+       content: "3"
+       background-image: url('../img/enemies/loot/bomb.png')
+     .shield
+      filter: contrast(250%) drop-shadow(0 0 10px green) invert(5%)
+      &::after
+       content: "15s"
+       background-image: url('../img/enemies/loot/shield.png')
+     .life
+      filter: brightness(1.75) drop-shadow(0 0 10px green) invert(5%)
+      &::after
+       content: "3"
+       background-image: url('../img/enemies/loot/heart.png')
+       opacity: .7
+     .multi-money
+      filter: saturate(300%) drop-shadow(0 0 10px green) invert(5%)
+      &::after
+       content: "2x"
+       background-image: url('../img/enemies/loot/money.png')
+     .stage-clear
+      filter: hue-rotate(90deg) drop-shadow(0 0 10px green) invert(5%)
+      &::after
+       content: "next stage"
+       font-size: 8px
+       letter-spacing: 1px
+ .menu 
+  filter: opacity(90%)
+  .container
+   position: relative
+   top: 50%
+   left: 50%
+   transform: translate(-50%, -50%)
+   width: 705px
+   height: 810px
+   background-image: url(../img/menu/background.png)
+   background-size: cover
+   h1
+    height: 111px
+    line-height: 111px
+    text-align: center
+    font-size: 52px
+   ul
+    position: absolute
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    width: 540px
+    height: 550px
+    margin: 60px 82.5px 0
+    opacity: 0
+    visibility: hidden
+    transition: .4s
+    &.active
+     opacity: 1
+     visibility: visible
+    li
+     flex-basis: 90px
+     width: 540px
+     background-image: url(../img/menu/option.png)
+     background-size: contain
+     position: relative
+     line-height: 90px
+     text-align: center
+     font-size: 38px
+     transition: .4s
+     cursor: pointer
+     &:hover
+      filter: contrast(140%)
+      color: gold
+     &.shadow
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      width: 540px
+      background-image: url(../img/menu/option.png)
+      background-size: cover
+      transition: .25s
+    &.help
+     justify-content: flex-start
+     .player
+      margin-bottom: 55px
+      h1
+       height: 80px
+       line-height: 80px
+      .information
+       display: flex
+       justify-content: space-between
+       p
+        margin-bottom: 10px
+     button
+      position: absolute
+      top: 500px
+      left: 50%
+      transform: translateX(-50%)
+      width: 100%
+      height: 60px
+      border: none
+      background-image: url(../img/menu/option.png)
+      background-size: 100% 100%
+      background-color: transparent
+      font-size: 26px
+      cursor: pointer
+      transition: .4s
+      &:hover
+       filter: contrast(140%)
+       color: gold
+    &.options
+     justify-content: normal
+     h1
+      height: 60px
+      line-height: 60px
+      font-size: 36px
+     .players, .difficulty
+      margin-bottom: 50px
+      &>p
+       color: gray
+       &:hover
+        color: white
+       &.active
+        color: gold
+      &>p
+       display: inline-block
+       width: 50%
+       padding: 10px 20px
+       float: left
+       text-align: center
+       font-size: 24px
+       transition: .4s
+       cursor: pointer
+     .difficulty
+      &>p
+       width: 33.3333%
+      .chosen-difficulties
+       position: relative
+       margin-top: 75px
+       &>div
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        opacity: 0
+        visibility: hidden
+        transition: .4s
+        &.active
+         opacity: 1
+         visibility: visible
+        p
+         width: 50%
+         padding-top: 5px
+         float: left
+         &:last-of-type
+          text-align: right
+     button
+      position: absolute
+      top: 500px
+      left: 50%
+      transform: translateX(-50%)
+      width: 100%
+      height: 60px
+      border: none
+      background-image: url(../img/menu/option.png)
+      background-size: 100% 100%
+      background-color: transparent
+      font-size: 26px
+      cursor: pointer
+      transition: .4s
+      &:hover
+       filter: contrast(140%)
+       color: gold
+.key-up 
+ opacity: 0.5
